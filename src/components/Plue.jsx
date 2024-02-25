@@ -65,13 +65,13 @@ function App() {
     }
   };
 
-  const handleEnded = () => {
-    const currentIndex = audioFiles.findIndex(
-      (file) => file.id === currentFile.id
-    );
-    const nextIndex = (currentIndex + 1) % audioFiles.length;
-    handlePlay(audioFiles[nextIndex]);
-  };
+  // const handleEnded = () => {
+  //   const currentIndex = audioFiles.findIndex(
+  //     (file) => file.id === currentFile.id
+  //   );
+  //   const nextIndex = (currentIndex + 1) % audioFiles.length;
+  //   handlePlay(audioFiles[nextIndex]);
+  // };
 
   useEffect(() => {
     if (currentFile) {
@@ -87,9 +87,9 @@ function App() {
           audioElement.current.currentTime
         );
       };
-      audioElement.current.onended = handleEnded;
+      // audioElement.current.onended = handleEnded;
     }
-  }, [audioElement, audioFiles, currentFile]);
+  }, [audioElement, audioFiles, currentFile, ]);
 
   useEffect(() => {
     if (hasUserInteracted && audioElement.current) {
@@ -132,7 +132,12 @@ function App() {
         </label>
       </div>
       {/* <input type="file" onChange={handleFileChange} multiple /> */}
-      {/* <button onClick={() => setHasUserInteracted(true)}>Play</button> */}
+      <button
+        style={{ display: "none" }}
+        onClick={() => setHasUserInteracted(true)}
+      >
+        Play
+      </button>
       <p className="play-list">Playlist</p>
       <ul className="music-cursor">
         {audioFiles.map((file, idx) => (
